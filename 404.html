@@ -4,21 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oops! Page Not Found</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <h1>Oops! The page you requested was not found.</h1>
     <script>
         function redirect() {
             const url = window.location.href;
-            // Check for data:text/html format
+
+            // Check if the URL is a data URI
             if (url.startsWith("data:text/html")) {
-                // No further redirection for data URI
-                return;
+                // Redirect to the intended URL (adjust the URL extraction as needed)
+                const intendedUrl = url.split(",")[1]; // Assuming the intended URL is after the comma
+                window.location.href = intendedUrl;
             }
-            // Extract the intended URL
-            const intendedUrl = url.split("/")[3]; // Modify index based on your URL structure
-            window.location.href = intendedUrl;
         }
+
         redirect();
     </script>
 </body>

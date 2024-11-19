@@ -3,29 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oops! Page Not Found</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            text-align: center;
-        }
-    </style>
+    <title>404 - Page Not Found</title>
 </head>
 <body>
-    <h1>Oops! The page you requested was not found.</h1>
+    <h1>Oops! Looks like you're lost.</h1>
+    <p>We couldn't find the page you were looking for.</p>
+    <button onclick="goBack()">Take me back</button>
     <script>
-        function redirect() {
-            const url = window.location.href;
-
-            // Check if the URL is a data URI
-            if (url.startsWith("data:text/html")) {
-                // Redirect to the intended URL (adjust the URL extraction as needed)
-                const intendedUrl = url.split(",")[1]; // Assuming the intended URL is after the comma
-                window.location.href = intendedUrl;
+        function goBack() {
+            // Get the original requested URL from the referrer
+            const referrerUrl = document.referrer;
+            
+            // Check if referrer is valid and not the 404 page itself
+            if (referrerUrl && !referrerUrl.endsWith("/404.html")) {
+                window.location.href = referrerUrl;
+            } else {
+                // Redirect to homepage if referrer is invalid
+                window.location.href = "/";
             }
         }
-
-        redirect();
     </script>
 </body>
 </html>
